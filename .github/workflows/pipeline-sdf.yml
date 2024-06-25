@@ -20,9 +20,7 @@ jobs:
           java-version: '17'
           distribution: 'oracle'
       - name: Install package
-        run: npm ci --acceptSuiteCloudSDKLicense
-      - name: Install SuiteCloud CLI
-        run: npm install -g @oracle/suitecloud-cli
+        run: npm ci --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
       - name: Run unit tests
         run: npm test
       - name: Authenticate project against ${{ vars.NS_ACCOUNT_ID }}
