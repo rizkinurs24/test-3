@@ -14,12 +14,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
-          cache-dependency-path: ./
       - name: Install JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'oracle'
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./
       - name: Install package
         run: npm ci --acceptSuiteCloudSDKLicense
       - name: Run unit tests
