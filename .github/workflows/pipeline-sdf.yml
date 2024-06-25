@@ -14,6 +14,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
+          working-directory: ./
       - name: Install JDK
         uses: actions/setup-java@v3
         with:
@@ -24,7 +25,7 @@ jobs:
       - name: Run unit tests
         run: npm test
       - name: Authenticate project against ${{ vars.NS_ACCOUNT_ID }}
-        run: actions/setup-node/.bin/suitecloud account:savetoken --account ${{ vars.NS_ACCOUNT_ID }} --authid ${{ vars.NS_ACCOUNT_ID }} --tokenid ${{ secrets.NS_TOKEN_ID }} --tokensecret ${{ secrets.NS_TOKEN_SECRET }}
+        run: ./setup-node/.bin/suitecloud account:savetoken --account ${{ vars.NS_ACCOUNT_ID }} --authid ${{ vars.NS_ACCOUNT_ID }} --tokenid ${{ secrets.NS_TOKEN_ID }} --tokensecret ${{ secrets.NS_TOKEN_SECRET }}
       - name: Validate project
         run: npm run validate
       - name: Deploy project
